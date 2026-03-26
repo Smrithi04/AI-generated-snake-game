@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Google AI Studio App</title>
+  </head>
+  <body>
+    <script>
+      window.addEventListener('error', function(e) {
+        var stack = e.error ? e.error.stack : e.message;
+        document.getElementById('error-log').textContent += stack + '\n';
+        fetch('http://localhost:3001/error', {
+          method: 'POST',
+          body: stack
+        }).catch(function() {});
+      });
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
